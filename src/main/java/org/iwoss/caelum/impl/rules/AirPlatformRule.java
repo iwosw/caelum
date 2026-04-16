@@ -125,7 +125,6 @@ public class AirPlatformRule implements IValidationRule {
         return platform;
     }
 
-    // Рекурсивная проверка: есть ли под блоком вертикальная цепочка до земли
     private static boolean hasTrueSupport(Level level, BlockPos pos, int maxDepth, Set<BlockPos> visited) {
         if (!visited.add(pos)) return false;
         if (visited.size() > 1000) return false;

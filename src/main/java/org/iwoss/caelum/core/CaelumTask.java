@@ -13,13 +13,7 @@ import net.minecraft.server.level.ServerLevel;
  */
 public record CaelumTask(BlockPos pos, ServerLevel level, long timestamp, boolean placedByPlayer) {
 
-    /**
-     * Вспомогательный конструктор для быстрого создания задачи.
-     * Важно: Всегда вызываем .immutable() для BlockPos.
-     * BlockPlaceEvent часто переиспользует один и тот же объект BlockPos,
-     * и если мы сохраним ссылку на него в асинхронном потоке, координаты могут
-     * измениться до того, как мы начнем проверку.
-     */
+
     public CaelumTask(BlockPos pos, ServerLevel level, boolean placedByPlayer) {
         this(pos.immutable(), level, System.currentTimeMillis(), placedByPlayer);
     }

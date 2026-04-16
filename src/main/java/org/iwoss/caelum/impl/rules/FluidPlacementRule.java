@@ -32,7 +32,6 @@ public class FluidPlacementRule {
         boolean hasSolidBelow = !level.getBlockState(below).isAir() && level.getBlockState(below).isSolid();
         LOGGER.info("Block below {}: {} (solid: {})", below, level.getBlockState(below).getBlock(), hasSolidBelow);
 
-        // 3. Проверка боковых блоков
         boolean hasSolidSide = false;
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             BlockPos side = pos.relative(dir);

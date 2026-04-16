@@ -29,10 +29,7 @@ public class ValidationDispatcher {
         taskQueue.add(task);
     }
 
-    /**
-     * Вызывается каждый серверный тик (20 раз в секунду).
-     * Обрабатывает не более maxTasksPerTick задач синхронно.
-     */
+
     public void tick() {
         if (taskQueue.isEmpty()) return;
 

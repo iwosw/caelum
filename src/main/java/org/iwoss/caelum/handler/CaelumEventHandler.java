@@ -46,7 +46,6 @@ public class CaelumEventHandler {
     public void onBlockBreak(BlockEvent.BreakEvent event) {
         if (!(event.getLevel() instanceof ServerLevel level)) return;
         BlockPos pos = event.getPos();
-        // Проверяем блоки над разрушенным (до 10 блоков вверх)
         for (int i = 1; i <= 10; i++) {
             BlockPos above = pos.above(i);
             if (level.getBlockState(above).isAir()) break;

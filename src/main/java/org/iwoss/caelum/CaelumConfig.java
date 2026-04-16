@@ -33,6 +33,7 @@ public class CaelumConfig {
         }
     }
 
+
     public static final Server SERVER;
     public static final ForgeConfigSpec SERVER_SPEC;
 

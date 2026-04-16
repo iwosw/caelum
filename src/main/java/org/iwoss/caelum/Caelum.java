@@ -18,7 +18,6 @@ public class Caelum {
     public static final String MODID = "caelum";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    // Создаем единственный экземпляр диспетчера на весь мод
     private final ValidationDispatcher dispatcher;
 
     public Caelum() {
