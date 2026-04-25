@@ -1,0 +1,9 @@
+{
+  "caelum.command.reload.success": "§a[Caelum] Конфиг перезагружен. Новые значения применены.",
+  "caelum.command.status.format": "§6[Caelum Status]\n§eОчередь платформ: §f%d\n§eКэш проверенных: §f%d\n§eУдалено платформ: §f%d\n§eЗаблокировано воды: §f%d",
+  "caelum.command.cleanup.already_running": "§cОчистка уже выполняется!",
+  "caelum.command.cleanup.started": "§a[Caelum] Запущена очистка... It will take some time, no lags!",
+  "caelum.command.cleanup.error": "§cОшибка: %s",
+  "caelum.command.cleanup.finished": "§a[Caelum] Очистка полностью завершена!",
+  "caelum.physics.platform_detected": "§c[Physics] §eОбнаружена висящая постройка. Проверка через %d мин после окончания работ."
+}

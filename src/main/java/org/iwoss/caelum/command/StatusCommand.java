@@ -27,13 +27,8 @@ public class StatusCommand implements ICommand {
         int removedPlatforms = PlatformValidator.getRemovedPlatforms();
         int blockedWater = FluidValidator.getBlockedWater();
 
-        Supplier<Component> message = () -> Component.literal(
-                "§6[Caelum Status]\n" +
-                        "§eОчередь платформ: §f" + pending + "\n" +
-                        "§eКэш проверенных: §f" + cache + "\n" +
-                        "§eУдалено платформ: §f" + removedPlatforms + "\n" +
-                        "§eЗаблокировано воды: §f" + blockedWater
-        );
+        Supplier<Component> message = () -> Component.translatable(
+                "caelum.command.status.format", pending, cache, removedPlatforms, blockedWater);
         ctx.getSource().sendSuccess(message, false);
         return 1;
     }

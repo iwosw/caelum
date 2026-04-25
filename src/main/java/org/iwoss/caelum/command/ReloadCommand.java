@@ -21,7 +21,7 @@ public class ReloadCommand implements ICommand {
 
     private int reloadConfig(CommandContext<CommandSourceStack> ctx) {
         CaelumConfig.SERVER_SPEC.afterReload();
-        Supplier<Component> message = () -> Component.literal("§a[Caelum] Конфиг перезагружен. Новые значения применены.");
+        Supplier<Component> message = () -> Component.translatable("caelum.command.reload.success");
         ctx.getSource().sendSuccess(message, true);
         return 1;
     }

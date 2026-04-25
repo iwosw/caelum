@@ -1,0 +1,9 @@
+{
+  "caelum.command.reload.success": "§a[Caelum] Config reloaded. New values applied.",
+  "caelum.command.status.format": "§6[Caelum Status]\n§ePlatform queue: §f%d\n§eChecked cache: §f%d\n§ePlatforms removed: §f%d\n§eWater blocked: §f%d",
+  "caelum.command.cleanup.already_running": "§cCleanup is already running!",
+  "caelum.command.cleanup.started": "§a[Caelum] Cleanup started... It will take some time, no lags!",
+  "caelum.command.cleanup.error": "§cError: %s",
+  "caelum.command.cleanup.finished": "§a[Caelum] Cleanup fully completed!",
+  "caelum.physics.platform_detected": "§c[Physics] §eFloating structure detected. Check in %d min after finishing."
+}

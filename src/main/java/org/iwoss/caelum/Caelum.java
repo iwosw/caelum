@@ -3,6 +3,7 @@ package org.iwoss.caelum;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -12,6 +13,8 @@ import org.iwoss.caelum.module.FluidValidator;
 import org.iwoss.caelum.module.PlatformValidator;
 import org.iwoss.caelum.module.WaterCleaner;
 import org.slf4j.Logger;
+
+import java.nio.file.Path;
 
 @Mod(Caelum.MODID)
 public class Caelum {
@@ -32,6 +35,21 @@ public class Caelum {
         @SubscribeEvent
         public static void onServerStarting(ServerStartingEvent event) {
             CommandManager.register(event.getServer().getCommands().getDispatcher());
+
+            PlatformValidator pv = PlatformValidator.getInstance();
+            if (pv != null) {
+                Path worldDir = event.getServer().getServerDirectory().toPath().resolve("world");
+                pv.loadPendingPlatforms(worldDir);
+            }
+        }
+
+        @SubscribeEvent
+        public static void onServerStopped(ServerStoppedEvent event) {
+            PlatformValidator pv = PlatformValidator.getInstance();
+            if (pv != null) {
+                Path worldDir = event.getServer().getServerDirectory().toPath().resolve("world");
+                pv.savePendingPlatforms(worldDir);
+            }
         }
     }
 }

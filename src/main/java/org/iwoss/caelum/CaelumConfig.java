@@ -8,30 +8,46 @@ public class CaelumConfig {
         public final ForgeConfigSpec.IntValue seaLevel;
         public final ForgeConfigSpec.IntValue minHeightAboveSeaLevel;
         public final ForgeConfigSpec.IntValue waterSupportBlocksRequired;
-        public final ForgeConfigSpec.IntValue minPlatformSizeToCheck;
-        public final ForgeConfigSpec.IntValue minSupportedBlocksForLarge;
-        public final ForgeConfigSpec.BooleanValue enableLogging;  // управление логами
+
+        // RP Physics settings
+        public final ForgeConfigSpec.IntValue marinationTimeMinutes;
+        public final ForgeConfigSpec.DoubleValue minStabilityRatio;
+        public final ForgeConfigSpec.ConfigValue<String> webhookUrl;
+        public final ForgeConfigSpec.BooleanValue enableLogging;
+
+        // Debug particles
+        public final ForgeConfigSpec.BooleanValue debugParticles;
+        public final ForgeConfigSpec.IntValue debugParticleIntervalTicks;
 
         Server(ForgeConfigSpec.Builder builder) {
-            builder.comment("Caelum Anti-Floating Platform & Water Rules").push("caelum");
-            seaLevel = builder
-                    .comment("Sea level (ocean height) for this dimension. Default 63 for Overworld.")
-                    .defineInRange("seaLevel", 63, -64, 256);
-            minHeightAboveSeaLevel = builder
-                    .comment("Minimum height ABOVE sea level to start checking. Example: 40 means Y > seaLevel+40 will be checked.")
-                    .defineInRange("minHeightAboveSeaLevel", 40, 0, 200);
-            waterSupportBlocksRequired = builder
-                    .comment("Minimum solid blocks in 3x3 area under water to allow placement")
-                    .defineInRange("waterSupportBlocksRequired", 5, 1, 9);
-            minPlatformSizeToCheck = builder
-                    .comment("Platforms with size < this value are never removed (allow small floating platforms).")
-                    .defineInRange("minPlatformSizeToCheck", 4, 1, 100);
-            minSupportedBlocksForLarge = builder
-                    .comment("For platforms with size >= minPlatformSizeToCheck, require at least this many blocks to have direct vertical support (a pillar below).")
-                    .defineInRange("minSupportedBlocksForLarge", 5, 1, 100);
-            enableLogging = builder
-                    .comment("Enable or disable all Caelum logs (true by default). Set to false to reduce console spam.")
-                    .define("enableLogging", true);
+            builder.comment("Caelum Advanced RP Physics & Anti-Grief").push("caelum");
+
+            seaLevel = builder.defineInRange("seaLevel", 63, -64, 256);
+            minHeightAboveSeaLevel = builder.defineInRange("minHeightAboveSeaLevel", 40, 0, 200);
+            waterSupportBlocksRequired = builder.defineInRange("waterSupportBlocksRequired", 5, 1, 9);
+
+            marinationTimeMinutes = builder
+                    .comment("How many minutes to wait before checking if building is stable")
+                    .defineInRange("marinationTimeMinutes", 60, 1, 1440);
+
+            minStabilityRatio = builder
+                    .comment("Ratio of support blocks to total blocks (0.05 = 5% support needed)")
+                    .defineInRange("minStabilityRatio", 0.05, 0.0, 1.0);
+
+            webhookUrl = builder
+                    .comment("Discord/Telegram Webhook URL for alerts")
+                    .define("webhookUrl", "");
+
+            enableLogging = builder.define("enableLogging", true);
+
+            debugParticles = builder
+                    .comment("Show particles over pending/active platforms (for admins)")
+                    .define("debugParticles", false);
+
+            debugParticleIntervalTicks = builder
+                    .comment("Tick interval for spawning debug particles")
+                    .defineInRange("debugParticleIntervalTicks", 20, 5, 200);
+
             builder.pop();
         }
     }
